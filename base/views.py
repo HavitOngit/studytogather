@@ -19,7 +19,7 @@ def room(request, pk):
 
 def createRoom(request):
     form = RoomForm()
-    
+
     if request.method == 'POST':
         form = RoomForm(request.POST)
         if form.is_valid():
@@ -29,3 +29,11 @@ def createRoom(request):
 
     context = {'form': form} 
     return render(request, 'create-from.html', context) 
+
+def updateRoom(request, pk):
+    room = Rooms.objects.get(id=pk)
+
+    # by instance we get pre-filld
+    form = RoomForm(instance=room)
+    context = {'form':form}
+    return render(request, 'crete-from.html', context) 
