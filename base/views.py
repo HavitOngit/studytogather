@@ -36,4 +36,4 @@ def updateRoom(request, pk):
     # by instance we get pre-filld
     form = RoomForm(instance=room)
     context = {'form':form}
-    return render(request, 'crete-from.html', context) 
+    return render(request, 'create-from.html', context) 
