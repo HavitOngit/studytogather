@@ -35,5 +35,13 @@ def updateRoom(request, pk):
 
     # by instance we get pre-filld
     form = RoomForm(instance=room)
+
+    # saving Data form user
+    if request.method == 'POST':
+        form = RoomForm(request.POST, instance=room)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
     context = {'form':form}
     return render(request, 'create-from.html', context) 
