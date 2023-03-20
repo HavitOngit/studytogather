@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudyBuddy</title>
 </head>
+
 <nav>
     <a href="/">
         <h1>Logo</h1>
@@ -14,8 +15,19 @@
     <form method="GET" action="{% url 'home' %}">
         <input type="text" name="q" placeholder="Sherch rooms...">
     </form> 
-    <hr>    
-</nav>    
+    <a href="{% url 'login' %}">Login</a>
+    <hr>
+    
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+        
+</nav> 
+
 <body>
     {% block content %}
 
