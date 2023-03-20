@@ -9,15 +9,17 @@ from django.db.models import Q
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
 
+    # for search
     rooms = Rooms.objects.filter(
         Q(topic__name__icontains=q) |
-        
+        Q(created__icontains=q) |
         Q(name__icontains=q) |
         Q(description__icontains=q)
         )
     
 
     topic = Topic.objects.all()
+    room_count = rooms.count()
 
     return render(request, 'home.html', {'rooms':rooms, 'topics':topic})
 
