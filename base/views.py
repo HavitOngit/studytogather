@@ -86,6 +86,7 @@ def home(request):
 def room(request, pk):
     room = Rooms.objects.get(id=pk)
     roomChat = room.massage_set.all().order_by('created')
+    participants = room.participants.all()
 
     if request.method == 'POST':
         massage = Massage.objects.create(
@@ -93,8 +94,9 @@ def room(request, pk):
             room = room,
             body = request.POST.get('body')
         )
+        room.participants.add(request.user)
         return redirect('room', pk=room.id)  
-    return render(request, 'room.html', {'room':room, 'roomChat':roomChat})
+    return render(request, 'room.html', {'room':room, 'roomChat':roomChat, 'participants':participants})
 
 @login_required(login_url='login')
 def createRoom(request):
