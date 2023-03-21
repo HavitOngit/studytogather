@@ -1,6 +1,15 @@
 {% extends 'main.html' %}
 
 {% block content %}
+
+<style>
+    .room-container{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+</style>
+<div class="room-container">
+<div>
 <h1>{{room.name}}</h1>
 
 <p> {{room.description}}</p>
@@ -19,6 +28,20 @@
 
 </div>
 
+{% if request.user.is_authenticated%}
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="text" name="body" placeholder="Write Your Message here...">
+    </form>
+</div>
+{% endif %}
+</div>
 
+<div>
+    <h3>Participants</h3>
+    <hr>
+</div>    
 
+</div>
 {% endblock content %}

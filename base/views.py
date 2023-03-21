@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout 
-from .models import Rooms, Topic
+from .models import Rooms, Topic, Massage
 from .form import RoomForm
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q
@@ -85,7 +85,15 @@ def home(request):
 
 def room(request, pk):
     room = Rooms.objects.get(id=pk)
-    roomChat = room.massage_set.all().order_by('-created')
+    roomChat = room.massage_set.all().order_by('created')
+
+    if request.method == 'POST':
+        massage = Massage.objects.create(
+            user = request.user,
+            room = room,
+            body = request.POST.get('body')
+        )
+        return redirect('room', pk=room.id)  
     return render(request, 'room.html', {'room':room, 'roomChat':roomChat})
 
 @login_required(login_url='login')
