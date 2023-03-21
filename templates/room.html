@@ -3,5 +3,22 @@
 {% block content %}
 <h1>{{room.name}}</h1>
 
+<p> {{room.description}}</p>
+
+<div class="comment-wrapper">
+    <h3>Conversation</h3>
+    <hr>
+
+    {% for Chat in roomChat %}
+    <div>
+        <small>@{{Chat.user}} {{Chat.created|timesince}} ago</small>
+        <p> {{Chat.body}}</p>
+        <hr>
+    </div>
+    {% endfor %}
+
+</div>
+
+
 
 {% endblock content %}

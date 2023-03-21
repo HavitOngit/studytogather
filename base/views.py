@@ -84,9 +84,9 @@ def home(request):
     return render(request, 'home.html', {'rooms':rooms, 'topics':topic, 'room_count':room_count})
 
 def room(request, pk):
-
-    context = Rooms.objects.get(id=pk)
-    return render(request, 'room.html', {'room':context})
+    room = Rooms.objects.get(id=pk)
+    roomChat = room.massage_set.all().order_by('-created')
+    return render(request, 'room.html', {'room':room, 'roomChat':roomChat})
 
 @login_required(login_url='login')
 def createRoom(request):
