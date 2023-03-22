@@ -80,7 +80,7 @@ def home(request):
 
     topic = Topic.objects.all()
     room_count = rooms.count()
-    room_massages = Massage.objects.all()
+    room_massages = Massage.objects.filter(Q(room__topic__name__icontains=q))
 
     return render(request, 'home.html', {'rooms':rooms, 'topics':topic, 'room_count':room_count, 'room_massages':room_massages})
 
