@@ -35,8 +35,8 @@
         <a href="{% url 'create-room' %}"> Create Room</a>
         {% for room in rooms%}
         <div>
-            {% if request.user == room.host %}
-            <a href="{% url 'update-room' room.id %}">Edit</a>
+            {% if request.user.username == room.host %}
+            
             <a href="{% url 'delete-room' room.id %}">Delete</a>
             {% endif %}
             <span>@{{room.host.username}}</span>
@@ -53,6 +53,15 @@
         {% for massage in room_massages %}
             <div>
                 <small>@{{massage.user}}  {{massage.created|timesince}}</small>
+                <small>replied to "{{massage.room}}"</small>
+                <p>{{massage}}</p>
+                
+                {% if request.user == massage.user %}
+
+                <a href="{% url 'delete-Chat' massage.id %}">Delete</a>
+                <hr>
+                {% endif %}
+                
             </div>
         {% endfor %}        
     </div>    

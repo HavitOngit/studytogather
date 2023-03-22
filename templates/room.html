@@ -20,7 +20,11 @@
 
     {% for Chat in roomChat %}
     <div>
-        <small>@{{Chat.user}} {{Chat.created|timesince}} ago</small>
+        <small>@{{Chat.user}} {{Chat.created|timesince}} ago
+            {% if request.user == Chat.user %}
+            <a href="{% url 'delete-Chat' Chat.id %}"> Delete</a>
+            {% endif %}
+        </small>
         <p> {{Chat.body}}</p>
         <hr>
     </div>

@@ -141,3 +141,16 @@ def deleteRoom(request, pk):
         return redirect('home')
     
     return render(request, 'delete.html', {'obj':room})
+
+@login_required(login_url='login')
+def deleteChat(request, pk):
+    Chat = Massage.objects.get(id=pk)
+    
+    if request.user != Chat.user:
+        return HttpResponse('You are not allowed here :[')
+    
+    if request.method == 'POST':
+        Chat.delete()
+        return redirect('home')
+    
+    return render(request, 'delete.html', {'obj':Chat})
