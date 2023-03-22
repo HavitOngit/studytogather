@@ -99,6 +99,14 @@ def room(request, pk):
         return redirect('room', pk=room.id)  
     return render(request, 'room.html', {'room':room, 'roomChat':roomChat, 'participants':participants})
 
+def userProfile(request, pk):
+    user = User.objects.get(id=pk)
+    rooms = user.rooms_set.all()
+    room_massages = user.massage_set.all()
+    topics = Topic.objects.all()
+    context = {'user': user, 'rooms':rooms, 'room_massages':room_massages, 'topics':topics}
+    return render(request, 'user_profile.html', context)
+
 @login_required(login_url='login')
 def createRoom(request):
     form = RoomForm()
