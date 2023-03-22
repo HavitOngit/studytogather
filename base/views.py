@@ -80,12 +80,13 @@ def home(request):
 
     topic = Topic.objects.all()
     room_count = rooms.count()
+    room_massages = Massage.objects.all()
 
-    return render(request, 'home.html', {'rooms':rooms, 'topics':topic, 'room_count':room_count})
+    return render(request, 'home.html', {'rooms':rooms, 'topics':topic, 'room_count':room_count, 'room_massages':room_massages})
 
 def room(request, pk):
     room = Rooms.objects.get(id=pk)
-    roomChat = room.massage_set.all().order_by('created')
+    roomChat = room.massage_set.all()
     participants = room.participants.all()
 
     if request.method == 'POST':
