@@ -1,22 +1,50 @@
 {% extends 'main.html' %}
-{% block content %}
 
-<style>
-    .profile-container{
-        display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
-    }
-</style>
-<h1>{{user.username}}</h1>
-<div class="profile-container">
-    <div>
-        {% include 'topics.html' %}
+{% block content %}
+<main class="profile-page layout layout--3">
+    <div class="container">
+      <!-- Topics Start -->
+      <div class="topics">
+      {% include 'topics.html' %}
+      </div>
+      <!-- Topics End -->
+
+      <!-- Room List Start -->
+      <div class="roomList">
+      {% include 'feed.html' %}
+      </div>
+      <!-- Room List End -->
+
+      <!-- Activities Start -->
+      <div class="activities">
+      {% include 'activitys.html' %}
+      </div>
+      <!-- Activities End -->
     </div>
-    <div>
-        {% include 'feed.html' %}
-    </div>
-    <div>
-        {% include 'activitys.html' %}
-    </div>
-</div>     
-{% endblock content %}
+  </main>
+
+{% endblock %}
+{% comment %}
+    {% extends 'main.html' %}
+    {% block content %}
+    
+    <style>
+        .profile-container{
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+        }
+    </style>
+    <h1>{{user.username}}</h1>
+    <div class="profile-container">
+        <div>
+            {% include 'topics.html' %}
+        </div>
+        <div>
+            {% include 'feed.html' %}
+        </div>
+        <div>
+            {% include 'activitys.html' %}
+        </div>
+    </div>     
+    {% endblock content %}
+{% endcomment %}
