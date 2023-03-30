@@ -1,0 +1,3 @@
+#StudyTogather
+
+Basic Django Project
