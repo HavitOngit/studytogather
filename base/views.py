@@ -184,3 +184,8 @@ def deleteChat(request, pk):
         return redirect('home')
     
     return render(request, 'delete.html', {'obj':Chat})
+
+def topicsPage(request):
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    topics = Topic.objects.filter(name__icontains=q)
+    return render(request, 'topics_mobi.html', {'topics':topics})
