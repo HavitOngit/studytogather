@@ -139,6 +139,12 @@
               <input type="text" name="body" placeholder="Write your message here..." />
             </form>
           </div>
+          {% else %}
+          <div class="room__message"  style="background-color: #65656d; text-align: center;">
+            <a href="{% url 'login' %}">
+            <small>Login First For Chat</small>
+            </a>
+          </div>  
           {% endif %}
         </div>
         <!-- Room End -->
