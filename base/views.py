@@ -189,3 +189,7 @@ def topicsPage(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     topics = Topic.objects.filter(name__icontains=q)
     return render(request, 'topics_mobi.html', {'topics':topics})
+
+def activityPage(request):
+    room_massages = Massage.objects.all()
+    return render(request, 'activity_page.html', {"room_massages":room_massages})
