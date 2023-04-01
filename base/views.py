@@ -1,15 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout 
-from .models import Rooms, Topic, Massage
+from .models import Rooms, Topic, Massage, User
 from .form import RoomForm, UserForm
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q
 from django.http import HttpResponse
 
-# Create your views here.
+
+#Create your views here.
 
 
 def loginPage(request):
