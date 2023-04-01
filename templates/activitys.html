@@ -27,7 +27,7 @@
             <div class="activities__boxHeader roomListRoom__header">
               <a href="{% url 'user-profile' massage.user.id %}" class="roomListRoom__author">
                 <div class="avatar avatar--small">
-                  <img src="https://randomuser.me/api/portraits/women/11.jpg" />
+                  <img src="{{massage.user.avatar.url}}" />
                 </div>
                 <p>
                   {{massage.user.username}}
